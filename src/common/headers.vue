@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       msg: '总在盼望总在失望p',
-      msg2:"hello word"
+      msg2:"总在盼望总在失望日子还不都这样"
     }
   }
 }
