@@ -3,7 +3,7 @@
       <div class="imgBox">
           <img src="" alt="">
       </div>
-       
+
             <ul class="rightF">
                 <li><a href="/">首页</a></li>
                 <li><a href="http://www.jlcity.gov.cn/" target="_blank">市政府</a></li>
@@ -14,9 +14,9 @@
                 <li><a href="http://www.jlcity.gov.cn/sq/" target="_blank">市情</a></li>
                 <li><a href="http://www.jlcity.gov.cn/sj/" target="_blank">数据</a></li>
             </ul>
-      
+
   </div>
- 
+
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
   name: 'HeaDers',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: '总在盼望总在失望p',
       msg2:"hello word"
     }
   }
