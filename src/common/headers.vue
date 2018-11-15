@@ -24,12 +24,8 @@ export default {
   name: 'HeaDers',
   data () {
     return {
-      msg: '总在盼望总在失望p',
-      msg2:"总在盼望总在失望日子还不都这样",
-      msg3:"快写一首情歌雅芳共赏",
-      msg4: '第四次修改',
-      msg5:'创建dev分之',
-      msg6: '深爱过所以没有再联络'
+      msg: '修改bug'
+
     }
   }
 }
