@@ -24,8 +24,12 @@ export default {
   name: 'HeaDers',
   data () {
     return {
-      msg: '修改bug'
-
+      msg: '总在盼望总在失望p',
+      msg2:"总在盼望总在失望日子还不都这样",
+      msg3:"",
+      msg4: '第四次修改',
+      msg5:'',
+      msg6: 'caihubsda'
     }
   }
 }
