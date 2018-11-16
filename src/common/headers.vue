@@ -26,9 +26,9 @@ export default {
     return {
       msg: '总在盼望总在失望p',
       msg2:"总在盼望总在失望日子还不都这样",
-      msg3:"快写一首情歌雅芳共赏",
+      msg3:"",
       msg4: '第四次修改',
-      msg5:'创建dev分之',
+      msg5:'',
       msg6: 'caihubsda'
     }
   }
