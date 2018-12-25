@@ -3,6 +3,7 @@
 var decodeAtIndex = function (S, K) {
   let result = {
     decodeCode: '',
+    size: 0,
     keys: K,
     init () {
       this.returnStr(S, K)
@@ -14,10 +15,12 @@ var decodeAtIndex = function (S, K) {
         if (this.decodeCode.length >= K) break;
         if (parseInt(S[a])) {
           let JSONSTR = JSON.stringify(this.decodeCode)
+          size *= parseInt(S[a])
           for (let b = 1; b < parseInt(S[a]); b++) {
             try {
               this.decodeCode += JSON.parse(JSONSTR)
             } catch (e) {
+              console.log(e)
               if (K <= this.decodeCode.length) break;
               K = K - this.decodeCode.length
               // console.log(this.decodeCode.length)
