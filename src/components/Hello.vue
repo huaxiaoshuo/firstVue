@@ -6,6 +6,7 @@
 
 <script>
 import headFoot from "../common/headFoot";
+// import  electron from "electron";
 
 export default {
   name: 'hello',
