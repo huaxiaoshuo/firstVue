@@ -7,6 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>人员管理</title>
   <link rel="stylesheet" href="./style.css">
+  <style>
+    body{
+      height: 200vh;
+    }
+  </style>
 </head>
 <body>
 <div class="userinfo"></div>
@@ -16,4 +21,76 @@
       <div class="content"></div>
 <script src="./jquery-3.3,1.min.js"></script>
 </body>
+<script type="application/javascript" defer>
+  // function debounce(func, wait) { // 防抖
+  //   let timer, context
+  //   return function(...args) {
+  //     context = this
+  //     if (timer) clearTimeout(timer)
+  //     timer = setTimeout(() => {
+  //       func.apply(context,args)
+  //     }, wait)
+  //   }
+  // }
+  // function debounce(func, wait, immediately) {
+  //   let timer
+  //   let debounced =  function (...args) {
+  //     let result
+  //     // 清除闹钟后，闹钟还是存在的
+  //     if (timer) clearTimeout(timer)
+  //     if (immediately) {
+  //       let called = !timer
+  //       timer = setTimeout(() => {
+  //         timer = null
+  //       }, wait)
+  //       if (called) {
+  //         result = func.apply(this,args)
+  //       }
+  //     } else {
+  //       timer = setTimeout(() => {
+  //         func.apply(this, args)
+  //       }, wait)
+  //     }
+  //     return result
+  //   }
+  //   debounced.cancel = function() {
+  //     clearTimeout(timer)
+  //     timer = null
+  //   }
+  //   return debounced
+  // }
+
+
+  function throttle(method, mustRunDelay) { // 节流
+    let timer,
+      args = arguments,
+      start;
+    return function loop() {
+      let self = this;
+      let now = Date.now();
+      if(!start){
+        start = now;
+      }
+      if(timer){
+        clearTimeout(timer);
+      }
+      if(now - start >= mustRunDelay){
+        method.apply(self, args);
+        start = now;
+      }else {
+        timer = setTimeout(function () {
+          loop.apply(self, args);
+        }, 50);
+      }
+    }
+  }
+
+  // window.addEventListener('scroll', debounce(getUserAction, 1000, false))
+  window.addEventListener('scroll', throttle(getUserAction, 1000))
+
+  function getUserAction () {
+    console.log(Math.max.call(this, ...[1,2,3]))
+  }
+
+</script>
 </html>
