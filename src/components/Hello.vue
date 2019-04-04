@@ -6,6 +6,7 @@
 
 <script>
 import headFoot from "../common/headFoot";
+import { getUser } from '../resource'
 // import  electron from "electron";
 
 export default {
@@ -18,6 +19,9 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       msg2:"hello word"
     }
+  },
+  created () {
+    getUser(2345)
   }
 }
 </script>
