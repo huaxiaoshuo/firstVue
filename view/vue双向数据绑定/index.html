@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body id="app">
+<div>
+  <div v-text="myText"></div>
+  <div v-text="myBox"></div>
+  <input type="text" v-model="myText"/>
+</div>
+
+<script>
+  class Vue {
+    constructor (options) {
+      this.options = options
+      this.$data = options.data
+      this.$el = document.querySelector(options.el)
+      this._directive = {}
+      this.Observer(this.$data)
+      this.Compile(this.$el)
+    }
+
+    // 劫持数据
+    Observer (data) {
+      for (let key in data) {
+        this._directive[key] = []
+        let Val = data[key]
+        let watch = this._directive[key]
+        Object.defineProperty(this.$data, key, {
+          get: () => {
+            return Val
+          },
+          set: (newVal) => {
+            if (newVal !== Val) {
+              console.log(newVal, Val)
+              Val = newVal
+              watch.forEach(element => {
+                element.update()
+              })
+            }
+          }
+        })
+      }
+    }
+
+    // 解析指令
+    Compile (el) {
+      let nodes = el.children
+      for (let a = 0; a < nodes.length; a++) {
+        let node = nodes[a]
+        if (node.children.length) { // 所有的子孙元素
+          this.Compile(nodes[a])
+        }
+        if (node.hasAttribute('v-text')) {
+          let attrVal = node.getAttribute('v-text')
+          this._directive[attrVal].push(new Watcher(node, this, attrVal, 'innerHTML'))
+        }
+        if (node.hasAttribute('v-model')) {
+          let attrVal = node.getAttribute('v-model')
+          this._directive[attrVal].push(new Watcher(node, this, attrVal, 'value'))
+
+          node.addEventListener('input', (function (event) {
+            return function () {
+              this.$data[attrVal] = node.value
+            }
+          })().bind(this))
+        }
+      }
+    }
+  }
+
+  // 订阅者
+  class Watcher {
+    constructor (el, vm, exp, attr) {
+      this.el = el
+      this.vm = vm
+      this.exp = exp
+      this.attr = attr
+
+      this.update()
+    }
+
+    update () {
+      this.el[this.attr] = this.vm.$data[this.exp]
+    }
+  }
+
+  let vue = new Vue({
+    el: '#app',
+    data: {
+      myText: '123',
+      myBox: '3456'
+    }
+  })
+
+</script>
+</body>
+</html>
